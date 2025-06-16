@@ -8,6 +8,8 @@
 #define MAP_WIDTH 4
 #define MAP_HEIGHT 4
 
+#define FOV (M_PI / 3)
+
 int main(void)
 {
     int map[MAP_HEIGHT][MAP_WIDTH] = {{1, 1, 1, 1},
@@ -66,11 +68,15 @@ int main(void)
         float player_y = 2.0f;
         float player_angle = 0.0f;
 
-        float distance = cast_ray(map, player_x, player_y, 0);
+        for (int screen_x = 0; screen_x < WINDOW_WIDTH; screen_x++) {
+            float ray_angle = player_angle - (FOV / 2) + (screen_x * FOV / WINDOW_WIDTH);
 
-        printf("Distance between point and player found at: %f\n", distance);
+            float distance = cast_ray(map, player_x, player_y, ray_angle);
 
-        render_ray(renderer, WINDOW_WIDTH / 2, distance);
+            distance *= cos(ray_angle - player_angle);
+
+            render_ray(renderer, screen_x, distance);
+        }
 
         SDL_RenderPresent(renderer);
     }
