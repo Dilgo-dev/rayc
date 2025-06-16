@@ -1,3 +1,5 @@
+#include <SDL.h>
+
 #ifndef RAYCASTING_H
 #define RAYCASTING_H
 
