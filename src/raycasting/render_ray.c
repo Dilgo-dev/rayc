@@ -11,7 +11,7 @@ void render_ray(SDL_Renderer* renderer, int screen_x, float distance) {
     if (brightness < 50) brightness = 50;
     if (brightness > 255) brightness = 255;
 
-    SDL_SetRenderDrawColor(renderer, brightness, brightness, brightness, brightness);
+    SDL_SetRenderDrawColor(renderer, brightness, brightness, brightness, 255);
     SDL_RenderDrawLine(renderer, screen_x, wall_top, screen_x, wall_bottom);
     return;
 }
