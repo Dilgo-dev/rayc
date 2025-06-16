@@ -2,6 +2,7 @@
 #include <stdbool.h>
 #include <SDL.h>
 #include <SDL_timer.h>
+#include <math.h>
 
 int main(void)
 {
@@ -50,6 +51,26 @@ int main(void)
             }
         }
 
+
+        // Player position
+        float player_x = 1.5f;
+        float player_y = 2.5f;
+        float player_angle = 0.0f;
+
+        // Cast a rayon
+        float ray_angle = M_PI / 4; // 45 degrés
+        float ray_dx = cos(ray_angle);
+        float ray_dy = sin(ray_angle);
+
+        // Start of rayon
+        float ray_x = player_x;
+        float ray_y = player_y;
+
+        // Send rayon
+        float step_size = 0.1f;
+
+
+        // Draw test line
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
         SDL_RenderClear(renderer);
 
