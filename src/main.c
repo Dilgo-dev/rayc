@@ -7,8 +7,6 @@
 
 #define MAP_WIDTH 4
 #define MAP_HEIGHT 4
-#define WINDOW_WIDTH 640
-#define WINDOW_HEIGHT 480
 
 int main(void)
 {

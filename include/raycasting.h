@@ -2,6 +2,8 @@
 #define RAYCASTING_H
 
 #define STEP_SIZE 0.1
+#define WINDOW_WIDTH 640
+#define WINDOW_HEIGHT 480
 
 float cast_ray(int map[4][4], float pos_x, float pos_y, float ray_angle);
 
