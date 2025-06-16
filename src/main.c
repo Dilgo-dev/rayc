@@ -44,6 +44,47 @@ int main(void)
         SDL_Quit();
         return 1;
     }
+    // RAYCASTING TEST
+
+    // Player position
+    float player_x = 1.5f;
+    float player_y = 2.5f;
+    float player_angle = 0.0f;
+
+    // Cast a rayon
+    float ray_angle = M_PI / 4; // 45 degrés
+    float ray_dx = cos(ray_angle);
+    float ray_dy = sin(ray_angle);
+
+    // Start of rayon
+    float ray_x = player_x;
+    float ray_y = player_y;
+
+    // Send rayon
+    float step_size = 0.1f;
+
+    while (1) {
+        // Move the rayon forward
+        ray_x += ray_dx * step_size;
+        ray_y += ray_dy * step_size;
+
+        // Convert float position into array position
+        int grid_x = (int)ray_x;
+        int grid_y = (int)ray_y;
+
+        // Did we step out of boundaries ?
+        if (grid_x < 0 || grid_x >= MAP_WIDTH || grid_y < 0 || grid_y >= MAP_HEIGHT) {
+            break;
+        }
+
+        // If we found a wall in the array position then
+        if (map[grid_y][grid_x] == 1) {
+            // We calculate the distance between the wall and the player
+            float distance = sqrt(pow(ray_x - player_x, 2) + pow(ray_y - player_y, 2));
+            printf("Distance between point and player found at: %f", distance);
+            break;
+        }
+    }
 
     // Main loop
     bool running = true;
@@ -58,47 +99,6 @@ int main(void)
                 break;
             }
         }
-
-        // Player position
-        float player_x = 1.5f;
-        float player_y = 2.5f;
-        float player_angle = 0.0f;
-
-        // Cast a rayon
-        float ray_angle = M_PI / 4; // 45 degrés
-        float ray_dx = cos(ray_angle);
-        float ray_dy = sin(ray_angle);
-
-        // Start of rayon
-        float ray_x = player_x;
-        float ray_y = player_y;
-
-        // Send rayon
-        float step_size = 0.1f;
-
-        while (1) {
-            // Move the rayon forward
-            ray_x += ray_dx * step_size;
-            ray_y += ray_dy * step_size;
-
-            // Convert float position into array position
-            int grid_x = (int)ray_x;
-            int grid_y = (int)ray_y;
-
-            // Did we step out of boundaries ?
-            if (grid_x < 0 || grid_x >= MAP_WIDTH || grid_y < 0 || grid_y >= MAP_HEIGHT) {
-                break;
-            }
-
-            // If we found a wall in the array position then
-            if (map[grid_y][grid_x] == 1) {
-                // We calculate the distance between the wall and the player
-                float distance = sqrt(pow(ray_x - player_x, 2) + pow(ray_y - player_y, 2));
-                printf("Distance between point and player found at: %f", distance);
-                break;
-            }
-        }
-
 
         // Draw test line
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
