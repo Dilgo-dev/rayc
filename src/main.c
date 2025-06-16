@@ -60,6 +60,8 @@ int main(void)
                 break;
             }
         }
+        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255); // Noir
+        SDL_RenderClear(renderer);
 
         // RAYCASTING TEST
 
@@ -69,7 +71,7 @@ int main(void)
         float player_angle = 0.0f;
 
         // Cast a rayon
-        float ray_angle = M_PI / 4; // 45 degrés
+        float ray_angle = 0;
         float ray_dx = cos(ray_angle);
         float ray_dy = sin(ray_angle);
 
@@ -109,11 +111,12 @@ int main(void)
                 int wall_bottom = wall_top + wall_height;
 
                 SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-                SDL_RenderDrawLine(renderer, 500, wall_top, 500, wall_bottom);
+                SDL_RenderDrawLine(renderer, WINDOW_WIDTH / 2, wall_top, WINDOW_WIDTH / 2, wall_bottom);
 
                 break;
             }
         }
+
         SDL_RenderPresent(renderer);
     }
 
