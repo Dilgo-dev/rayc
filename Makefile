@@ -1,5 +1,6 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -std=c99 -g
+SDL_CFLAGS = `sdl2-config --libs --cflags`
 TARGET = main
 SRC_DIR = src
 INC_DIR = include
@@ -13,11 +14,11 @@ OBJ_SUBDIRS = $(SUBDIRS:$(SRC_DIR)%=$(OBJ_DIR)%)
 all: $(TARGET)
 
 $(TARGET): $(OBJECTS)
-	$(CC) $(OBJECTS) -o $@
+	$(CC) $(OBJECTS) $(SDL_CFLAGS) -o $@
 	@echo "✓ Compilation terminée : $(TARGET)"
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_SUBDIRS)
-	$(CC) $(CFLAGS) $(INCLUDES) -I$(INC_DIR) -c $< -o $@
+	$(CC) $(CFLAGS) $(SDL_CFLAGS) $(INCLUDES) -I$(INC_DIR) -c $< -o $@
 	@echo "✓ Compilé: $<"
 
 $(OBJ_SUBDIRS):
