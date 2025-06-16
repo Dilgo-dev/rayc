@@ -70,16 +70,7 @@ int main(void)
 
         printf("Distance between point and player found at: %f\n", distance);
 
-        // RENDER PHASE
-        // Find wall height
-        float wall_height = (WINDOW_HEIGHT * 1.0) / distance;
-
-        // Centre wall
-        int wall_top = (WINDOW_HEIGHT - wall_height) / 2;
-        int wall_bottom = wall_top + wall_height;
-
-        SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-        SDL_RenderDrawLine(renderer, WINDOW_WIDTH / 2, wall_top, WINDOW_WIDTH / 2, wall_bottom);
+        render_ray(renderer, WINDOW_WIDTH / 2, distance);
 
         SDL_RenderPresent(renderer);
     }
