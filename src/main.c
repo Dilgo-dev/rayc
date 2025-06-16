@@ -6,6 +6,11 @@
 
 int main(void)
 {
+    int map[4][4] = {{1, 1, 1, 1},
+                     {1, 0, 0, 1},
+                     {1, 0, 0, 1},
+                     {1, 1, 1, 1}};
+
     // Initialize SDL
     if (SDL_Init(SDL_INIT_VIDEO|SDL_INIT_TIMER) != 0)
     {
@@ -50,7 +55,6 @@ int main(void)
                 break;
             }
         }
-
 
         // Player position
         float player_x = 1.5f;
