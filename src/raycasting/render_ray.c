@@ -2,6 +2,10 @@
 #include "raycasting.h"
 
 void render_ray(SDL_Renderer* renderer, int screen_x, float distance) {
+    if (distance <= 0.01f) {
+        distance = 0.01f;
+    }
+
     float wall_height = (WINDOW_HEIGHT * 1.0) / distance;
 
     float wall_top = (WINDOW_HEIGHT - wall_height) / 2;
