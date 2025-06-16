@@ -10,11 +10,14 @@ float cast_ray(int map[4][4], float pos_x, float pos_y, float ray_angle) {
     float ray_x = pos_x;
     float ray_y = pos_y;
 
+    float distance = 0.0f;
+
     while (distance < MAX_DISTANCE) {
 
         // Move the rayon forward
         ray_x += ray_dx * STEP_SIZE;
         ray_y += ray_dy * STEP_SIZE;
+        distance += STEP_SIZE;
 
         // Convert into map position
         int grid_x = (int)ray_x;
@@ -25,8 +28,9 @@ float cast_ray(int map[4][4], float pos_x, float pos_y, float ray_angle) {
 
         // Check if ray touch a wall
         if (map[grid_y][grid_x] == 1) {
-            return sqrt(pow(ray_x - pos_x, 2) + pow(ray_y - pos_y, 2));
+            return distance;
         }
 
     }
+    return MAX_DISTANCE;
 }
