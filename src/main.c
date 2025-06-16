@@ -100,7 +100,7 @@ int main(void)
             if (map[grid_y][grid_x] == 1) {
                 // We calculate the distance between the wall and the player
                 float distance = sqrt(pow(ray_x - player_x, 2) + pow(ray_y - player_y, 2));
-                printf("Distance between point and player found at: %f", distance);
+                printf("Distance between point and player found at: %f\n", distance);
 
                 // RENDER PHASE
                 // Find wall height
