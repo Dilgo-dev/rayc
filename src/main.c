@@ -40,10 +40,6 @@ int main(void)
     bool running = true;
     while (running)
     {
-        SDL_RenderDrawLine(renderer, 50, 50, 50, 480);
-        SDL_RenderClear(renderer);
-        SDL_RenderPresent(renderer);
-
         SDL_Event e;
         while (SDL_PollEvent(&e) != 0)
         {
@@ -53,6 +49,14 @@ int main(void)
                 break;
             }
         }
+
+        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+        SDL_RenderClear(renderer);
+
+        SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+        SDL_RenderDrawLine(renderer, 10, 10, 500, 500);
+
+        SDL_RenderPresent(renderer);
     }
 
     // Clean up resources before exiting
