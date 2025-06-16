@@ -48,6 +48,10 @@ int main(void)
         return 1;
     }
 
+    float player_x = 1.5f;
+    float player_y = 2.0f;
+    float player_angle = 0.0f;
+
     // Main loop
     bool running = true;
     while (running)
@@ -55,6 +59,17 @@ int main(void)
         SDL_Event e;
         while (SDL_PollEvent(&e) != 0)
         {
+            if (e.type == SDL_KEYDOWN)
+            {
+                if (e.key.keysym.sym == SDLK_RIGHT)
+                {
+                    player_angle += 0.1f;
+                }
+                if (e.key.keysym.sym == SDLK_LEFT)
+                {
+                    player_angle -= 0.1f;
+                }
+            }
             if (e.type == SDL_QUIT)
             {
                 running = false;
@@ -64,9 +79,6 @@ int main(void)
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
         SDL_RenderClear(renderer);
 
-        float player_x = 1.5f;
-        float player_y = 2.0f;
-        float player_angle = 0.0f;
 
         for (int screen_x = 0; screen_x < WINDOW_WIDTH; screen_x++) {
             float ray_angle = player_angle - (FOV / 2) + (screen_x * FOV / WINDOW_WIDTH);
