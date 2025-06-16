@@ -6,6 +6,8 @@
 
 #define MAP_WIDTH 4
 #define MAP_HEIGHT 4
+#define WINDOW_WIDTH 640
+#define WINDOW_HEIGHT 480
 
 int main(void)
 {
@@ -25,7 +27,7 @@ int main(void)
     SDL_Window* window = SDL_CreateWindow("Rayc in C 🦉",
                                        SDL_WINDOWPOS_CENTERED,
                                        SDL_WINDOWPOS_CENTERED,
-                                       640, 480, 0);
+                                       WINDOW_WIDTH, WINDOW_HEIGHT, 0);
     if (!window)
     {
         printf("error creating window: %s\n", SDL_GetError());
@@ -82,6 +84,18 @@ int main(void)
             // We calculate the distance between the wall and the player
             float distance = sqrt(pow(ray_x - player_x, 2) + pow(ray_y - player_y, 2));
             printf("Distance between point and player found at: %f", distance);
+
+            // RENDER PHASE
+            // Find wall height
+            float wall_height = (WINDOW_HEIGHT * 1.0) / distance;
+
+            // Centre wall
+            int wall_top = (WINDOW_HEIGHT - wall_height) / 2;
+            int wall_bottom = wall_top + wall_height;
+
+            SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+            SDL_RenderDrawLine(renderer, 500, wall_top, 500, wall_bottom);
+
             break;
         }
     }
